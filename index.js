@@ -30,11 +30,11 @@ module.exports = (config, options = {}) => {
   const bemClass = getBemClass(baseClass)
 
   /**
-   * @param {string} anchor_text - Footnote reference content
+   * @param {string} anchor_text - Anchor text for footnote. Will become hyperlink. Plain text only.
    * @param {string} id - Footnote id
-   * @param {string} footnote_content - Actual footnote content
+   * @param {string} footnote_content - Actual footnote content.
   */
-  function footnoteref(anchor_text, id, footnote_content) {
+  function footnoteref(footnote_content, id, anchor_text) {
     const key = this.page.inputPath
     const footnote = { id, description: footnote_content }
 
