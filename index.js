@@ -90,7 +90,9 @@ module.exports = (config, options = {}) => {
     return `
   <footer ${containerAttrs}>
     <h2 ${titleAttrs}>${title}</h2>
-    <ol ${listAttrs}>${footnotes.map(renderFootnote).join('\n')}</ol>
+    <ol ${listAttrs}>
+      ${footnotes.map(renderFootnote).join('\n      ')}
+    </ol>
   </footer>`
   }
 
