@@ -38,6 +38,11 @@ module.exports = (config, options = {}) => {
     const key = this.page.inputPath
     const footnote = { id, description: footnote_content }
 
+    /* Anchor text for the footnote is optional */
+    if (anchor_text == null) {
+      anchor_text = "";
+    }
+
     if (!footnote_content) {
       console.log(
         `[eleventy-plugin-footnotes] Warning: Footnote reference with id ‘${id}’ has no given description (missing or falsy second argument); footnote omitted entirely.\n`
