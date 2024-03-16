@@ -30,20 +30,19 @@ module.exports = (config, options = {}) => {
   const bemClass = getBemClass(baseClass)
 
   /**
-   * @param {string} content - Footnote reference content
+   * @param {string} anchor_text - Footnote reference content
    * @param {string} id - Footnote id
-   * @param {string} description - Actual footnote content
+   * @param {string} footnote_content - Actual footnote content
   */
-  function footnoteref(content, id, description) {
+  function footnoteref(anchor_text, id, footnote_content) {
     const key = this.page.inputPath
-    const footnote = { id, description }
+    const footnote = { id, description: footnote_content }
 
-    if (!description) {
+    if (!footnote_content) {
       console.log(
         `[eleventy-plugin-footnotes] Warning: Footnote reference with id ‘${id}’ has no given description (missing or falsy second argument); footnote omitted entirely.\n`
       )
-
-      return content
+      return anchor_text
     }
 
     // Register the footnote in the map
@@ -57,7 +56,7 @@ module.exports = (config, options = {}) => {
       id: `${id}-ref`,
       'aria-describedby': titleId,
       role: 'doc-noteref',
-    })}>${content}</a>`
+    })}>${anchor_text}</a>`
   }
 
   /** `footnotes` shortcode that renders the footnotes references wherever it's invoked. */
